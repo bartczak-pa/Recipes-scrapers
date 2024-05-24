@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 
 
@@ -7,13 +8,17 @@ class RainbowPlantLifeScraper:
         # Initialize Chrome Webdriver
         self.driver = webdriver.Chrome()
         self.driver.get("https://rainbowplantlife.com/")
+        self.driver.implicitly_wait(4)
 
     def accept_cookies(self) -> None:
         """As website uses cookies, this function accepts cookies and closes iframe window"""
-        self.driver.implicitly_wait(4)
-        iframe = self.driver.find_element(By.CSS_SELECTOR, " #gdpr-consent-tool-wrapper > #gdpr-consent-notice")
-        self.driver.switch_to.frame(iframe)
-        self.driver.find_element(By.ID, "save").click()
+
+        try:
+            iframe = self.driver.find_element(By.CSS_SELECTOR, " #gdpr-consent-tool-wrapper > #gdpr-consent-notice")
+            self.driver.switch_to.frame(iframe)
+            self.driver.find_element(By.ID, "save").click()
+        except NoSuchElementException:
+            print("Cookies already accepted or window with cookies not visible")
 
 
 scraper = RainbowPlantLifeScraper()
