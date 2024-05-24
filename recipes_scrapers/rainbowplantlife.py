@@ -1,10 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-# Initialize Chrome Webdriver
-driver = webdriver.Chrome()
-driver.get("https://rainbowplantlife.com/")
-
 
 class RainbowPlantLifeScraper:
     def __init__(self):
