@@ -20,6 +20,12 @@ class RainbowPlantLifeScraper:
         except NoSuchElementException:
             print("Cookies already accepted or window with cookies not visible")
 
+    def close_ad_bar(self) -> None:
+        """Helper function closing ad bar, otherwise button 'Load more recipes' will be not available to click for the
+        Selenium"""
+        self.driver.find_element(By.CLASS_NAME, "adthrive-close").click()
+
 
 scraper = RainbowPlantLifeScraper()
 scraper.accept_cookies()
+scraper.close_ad_bar()
