@@ -1,4 +1,4 @@
-# Recipes Scrapers
+# Recipes Scrapers (Abandoned)
 
 A Python app to scrape vegan recipes from various websites.
 
